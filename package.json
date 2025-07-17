@@ -1,0 +1,25 @@
+{
+  "name": "emailsenderapp",
+  "version": "1.0.0",
+  "description": "An automated and customizable email-sending application built with Node.js. It supports plain text and HTML emails, attachments, and integration with email services like SMTP, SendGrid, and Mailgun.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon ./app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.4",
+    "nodemailer": "^7.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
