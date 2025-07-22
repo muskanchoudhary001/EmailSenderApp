@@ -65,8 +65,7 @@ SMTP_PORT=587
 SMTP_USER=your_smtp_user
 SMTP_PASS=your_smtp_password
 
-# SendGrid Configuration
-SENDGRID_API_KEY=your_sendgrid_api_key
+ 
 
 # MongoDB URI for storing logs
 MONGO_URI=mongodb://localhost:27017/email-logs
