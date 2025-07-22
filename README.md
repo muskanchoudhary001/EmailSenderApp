@@ -30,20 +30,20 @@ An automated and customizable email-sending application built with Node.js. It s
 
 ## 📦 Setup Instructions
 
-### 1️⃣ Clone the Repository:
+### 1️⃣ Clone the Repository
 
 ```bash
 git clone https://github.com/your-username/email-sender.git
 cd email-sender
 ```
 
-### 2️⃣ Install Dependencies:
+### 2️⃣ Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3️⃣ Create .env File with Your Credentials:
+### 3️⃣ Create .env File with Your Credentials
 
 See the .env format below for required variables.
 
@@ -68,10 +68,6 @@ SMTP_PASS=your_smtp_password
 # SendGrid Configuration
 SENDGRID_API_KEY=your_sendgrid_api_key
 
-# Mailgun Configuration
-MAILGUN_API_KEY=your_mailgun_api_key
-MAILGUN_DOMAIN=your_mailgun_domain
-
 # MongoDB URI for storing logs
 MONGO_URI=mongodb://localhost:27017/email-logs
 
@@ -79,19 +75,21 @@ MONGO_URI=mongodb://localhost:27017/email-logs
 
 ***⚠️ Note: If you're using Gmail, generate an App Password from your Google Account (2FA must be enabled).***
 
-### 4️⃣ Run the Application:
+### 4️⃣ Run the Application
+
 ```bash
 node index.js/app.js
 ```
+
 ---
 
 ## 🧩 Applications
 
-    📢 Email marketing campaigns
+- 📢 Email marketing campaigns
 
-    🔔 Notification systems
+- 🔔 Notification systems
 
-    🤖 Automated communications
+- 🤖 Automated communications
 
 ---
 
@@ -118,4 +116,3 @@ This project is licensed under the MIT License.
 Feel free to fork this repo and open a pull request to contribute. Bug reports and feature requests are welcome!
 
 ---
-
