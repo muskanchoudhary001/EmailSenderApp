@@ -12,8 +12,6 @@ An automated and customizable email-sending application built with Node.js. It s
 - Send to multiple recipients at once.
 - Integration with email services:
   - SMTP Servers
-  - SendGrid
-  - Mailgun
 - MongoDB used for logging sent emails.
 
 ---
