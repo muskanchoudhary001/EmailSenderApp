@@ -1,6 +1,8 @@
 const express = require("express");
 const { engine } = require('express-handlebars');  // Update for express-handlebars v8.x
 const nodemailer = require("nodemailer");
+const mongoose = require('mongoose')
+const Email = require('./models/Email')
 const path = require("path");
 require('dotenv').config({ path: './.env' });
 
@@ -17,6 +19,16 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+//mongoDB connection
+mongoose.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+    .then(() => {
+        console.log("MongoDB connected!!")
+    })
+    .catch(err => console.log(err))
+
 // Routes
 app.get("/", (req, res) => {
     res.render('index');
@@ -32,11 +44,13 @@ app.post('/send-email', async (req, res) => {
         },
     });
 
+    const { name, email, subject, content } = req.body;
+
     const info = {
-        from: `${req.body.name || 'No Name'} <${process.env.EMAIL_USERNAME}>`, // Default to 'No Name' if name is empty
-        to: req.body.email,
-        subject: req.body.subject,
-        text: req.body.content,
+        from: `${name || 'No Name'} <${process.env.EMAIL_USERNAME}>`, // Default to 'No Name' if name is empty
+        to: email,
+        subject: subject,
+        text: content,
         attachments: [
             {
                 filename: 'logo.png',
@@ -46,15 +60,31 @@ app.post('/send-email', async (req, res) => {
     };
 
     // Send email
-    transporter.sendMail(info, (err, info) => {
-        if (err) {
-            console.log("Error: ",err);
-            return res.status(500).send({ message: "Failed to send email" });
-        } else {
-            console.log('Sent: ' + info.response);
-            return res.status(200).send({ message: "Email is Sent Successfully😀" });
-        }
-    });
+    try {
+        const emailResponse = await transporter.sendMail(info);
+
+        const emailData = new Email({
+            name,
+            email,
+            subject,
+            content
+        })
+
+        await emailData.save(); //save to mongoDB
+        console.log("Email Data Saved to DB:", emailData);
+
+
+        return res.status(200).send({
+            message: "Email is Sent Successfully😀"
+        })
+
+    } catch (err) {
+        console.error("Error: ", err);
+        return res.status(500).send({
+            message: "Failed to send email"
+        })
+    }
+
 });
 
 // Start server

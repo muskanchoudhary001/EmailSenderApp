@@ -22,8 +22,7 @@ An automated and customizable email-sending application built with Node.js. It s
 
 - Node.js with Nodemailer
 - SMTP protocol
-- SendGrid API
-- Mailgun API
+- Multer (for file upload)
 - MongoDB (for storing email logs)
 
 ---
@@ -98,7 +97,7 @@ node index.js/app.js
 
     Using Node.js for backend development
 
-    API integration (SendGrid, Mailgun)
+   Using Multer for handling file attachments and uploads
 
     Using MongoDB to log and retrieve email history
 
