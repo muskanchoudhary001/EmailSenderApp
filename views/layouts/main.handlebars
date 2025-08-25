@@ -1,20 +1,77 @@
-<html lang='en'>
+ <!DOCTYPE html>
+<html lang="en" class="bg-white dark:bg-gray-900 text-black dark:text-white transition-colors duration-300">
 
 <head>
-    <meta charset='UTF-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
-    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sending E-mail</title>
-    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-    <link
-        href='https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'
-        rel='stylesheet' />
-    <link rel='preconnect' href='https://fonts.googleapis.com' />
-    <link rel="stylesheet" href="/public/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+<link rel="icon" href="/public/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/public/styles.css" />
 </head>
 
-<body>
+<body
+    class="min-h-screen bg-doodle-light dark:bg-doodle-dark bg-cover bg-center bg-no-repeat text-black dark:text-white transition-colors duration-300 " style="background-attachment: fixed" >
+
+    <!-- 🌙 Toggle button -->
+    <div class="flex justify-end p-4"> 
+        <button id="theme-toggle" type="button" aria-label="Toggle theme"
+            class="p-3 rounded-full bg-white text-gray-800 dark:bg-gray-200 dark:text-yellow-400 shadow-md transition-colors duration-300">
+            <!-- ☀️ Sun Icon (light theme) -->
+            <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden text-gray-200 dark:text-yellow-400"
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd"
+                    d="M13 3a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0V3ZM6.343 4.929A1 1 0 0 0 4.93 6.343l1.414 1.414a1 1 0 0 0 1.414-1.414L6.343 4.929Zm12.728 1.414a1 1 0 0 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 1.414 1.414l1.414-1.414ZM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm-9 4a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2H3Zm16 0a1 1 0 1 0 0 2h2a1 1 0 1 0 0-2h-2ZM7.757 17.657a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414Zm9.9-1.414a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM13 19a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Z"
+                    clip-rule="evenodd" />
+            </svg>
+
+            <!-- 🌙 Moon Icon (dark theme) -->
+            <svg id="theme-toggle-dark-icon" class="w-6 h-6 text-indigo-600 dark:text-gray-300"
+                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="M21.752 15.002A9.718 9.718 0 0112.998 22C7.477 22 3 17.523 3 12c0-4.355 2.78-8.059 6.653-9.473a.75.75 0 01.964.964A8.25 8.25 0 0020.788 14.04a.75.75 0 01.964.963z">
+                </path>
+            </svg>
+        </button>
+    </div>
+
     {{{body}}}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const themeToggleBtn = document.getElementById("theme-toggle");
+            const lightIcon = document.getElementById("theme-toggle-light-icon");
+            const darkIcon = document.getElementById("theme-toggle-dark-icon");
+
+            // Check localStorage and system theme preference on load
+            if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+                document.documentElement.classList.add("dark");
+                darkIcon.classList.add("hidden");
+                lightIcon.classList.remove("hidden");
+            } else {
+                document.documentElement.classList.remove("dark");
+                lightIcon.classList.add("hidden");
+                darkIcon.classList.remove("hidden");
+            }
+
+            // Theme toggle functionality
+            themeToggleBtn.addEventListener("click", () => {
+                lightIcon.classList.toggle("hidden");
+                darkIcon.classList.toggle("hidden");
+
+                if (document.documentElement.classList.contains("dark")) {
+                    document.documentElement.classList.remove("dark");
+                    localStorage.theme = "light";
+                } else {
+                    document.documentElement.classList.add("dark");
+                    localStorage.theme = "dark";
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 </html>

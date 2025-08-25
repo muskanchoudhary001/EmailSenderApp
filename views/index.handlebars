@@ -1,44 +1,46 @@
-<div class="max-w-xl mx-auto p-6 bg-gray-50 shadow-md rounded-lg mt-10 border border-gray-200">
-    <h2 class="text-2xl font-semibold mb-6 text-center text-indigo-700">Send E-mail with Node.js</h2>
+<div class="max-w-xl mx-auto p-6 bg-gray-100 shadow-md rounded-lg mt-2 border border-gray-200 mb-10 overflow-y-auto
+            dark:bg-gray-800 dark:border-gray-700">
+    <h2 class="text-2xl font-semibold mb-6 text-center text-indigo-700 dark:text-indigo-300">Send E-mail with Node.js</h2>
+
 
     <form id="email-form" class="space-y-5">
         <div>
-            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+            <label for="name" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Name</label>
             <input id="name" name="name" type="text" placeholder="Enter your name" required
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         </div>
 
         <div>
-            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">E-mail</label>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">E-mail</label>
             <input id="email" name="email" type="email" placeholder="Enter your e-mail" required
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         </div>
 
         <div>
-            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Subject</label>
             <input id="subject" name="subject" type="text" placeholder="Enter the subject" required
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400">
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         </div>
 
         <div>
-            <label for="content" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+            <label for="content" class="block text-sm font-medium text-gray-700 mb-1 dark:text-gray-300">Message</label>
             <textarea id="content" name="content" rows="4" placeholder="Enter the message" required
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400"></textarea>
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
         </div>
 
         <button id="submit-button" type="submit"
-            class="w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition">
+            class="w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md hover:bg-indigo-700 transition dark:bg-indigo-700 dark:hover:bg-indigo-800">
             Send Message
         </button>
 
-
-        <p id="msg" class="text-center text-indigo-600 font-medium mt-4"></p>
+        <p id="msg" class="text-center text-indigo-600 font-medium mt-4 dark:text-indigo-300"></p>
     </form>
 
     <script>
+        // Form submission functionality
         const form = document.getElementById('email-form');
         const msg = document.getElementById('msg');
-        const submitButton = document.getElementById('submit-button')
+        const submitButton = document.getElementById('submit-button');
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -52,8 +54,6 @@
 
             submitButton.disabled = true;
 
-
-
             try {
                 const res = await fetch('/send-email', {
                     method: 'POST',
@@ -62,22 +62,17 @@
                 });
 
                 const result = await res.json();
-                msg.innerHTML = result.message || "Email Sent Successfully! 😊"
+                msg.innerHTML = result.message || "Email Sent Successfully! 😊";
 
-                //reseting form after email sending
+                // Resetting form after email sending
                 form.reset();
-
-                //focus on the name field
                 document.getElementById("name").focus();
 
             } catch (err) {
-                msg.innerHTML = "Something went wrong!!"
+                msg.innerHTML = "Something went wrong!!";
                 console.log(err);
             } finally {
-
-                //hide loading spinner and enable submit button               
                 submitButton.disabled = false;
-
             }
         });
     </script>

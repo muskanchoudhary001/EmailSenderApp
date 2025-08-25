@@ -10,6 +10,6 @@ const emailSchema = new mongoose.Schema({
     date: { type: Date, default: Date.now }
 });
 
-const Email = mongoose.model("Email" , emailSchema);
+const Email = mongoose.model("Email", emailSchema);
 
 module.exports = Email;
