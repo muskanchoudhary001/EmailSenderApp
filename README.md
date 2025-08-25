@@ -13,6 +13,11 @@ An automated and customizable email-sending application built with Node.js. It s
 - Integration with email services:
   - SMTP Servers
 - MongoDB used for logging sent emails.
+- **Customizable theme**: The app supports a dark/light theme toggle for better user experience.
+
+🛠️ **Technologies Used**
+
+- Node.js with Nodemailer
 
 ---
 
@@ -111,4 +116,7 @@ This project is licensed under the MIT License.
 
 Feel free to fork this repo and open a pull request to contribute. Bug reports and feature requests are welcome!
 
+---
+### Key Updates:
+- Add a **"Support for file attachments (coming soon)"** note in the features section.
 ---
